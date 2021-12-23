@@ -51,11 +51,6 @@ router.get('/:id/products', restrict, async (req, res, next) => { //eslint-disab
     const product = await Products.findById(req.params.id)
     res.status(200).json(product)
   })
-
-router.get('/:id/products/:product_id', restrict, async (req, res, next) => { //eslint-disable-line
-    const product = await Products.findByProductId(req.params.id, req.params.product_id)
-    res.status(200).json(product)
-  })
   
 router.post('/:id/products', restrict, async (req, res, next) => {
   try {
@@ -73,37 +68,5 @@ router.post('/:id/products', restrict, async (req, res, next) => {
       next(err)
   }
 })
-
-router.delete('/:id/plants/:plant_id', restrict, async (req, res, next) => {
-    const userId = req.params.id
-    const userProductId = req.params.plant_id
-    try{
-      const productToDelete = await Products.findByPlantId(userId, userProductId)
-      const idToDelete = productToDelete[0].user_product_id
-      const deleted = await Products.remove(idToDelete)
-      res.json(deleted)
-    }catch(err){
-      next(err)
-    }
-  })
-
-router.put('/:id/plants/:plant_id', restrict, async (req, res, next) => {
-      try {
-        const userId = req.params.id
-        const userProductId = req.params.product_id
-        const changes = req.body
-
-        if(!changes.product_name) {
-            res.status(400).json({
-                message: 'please fill all required fields out'
-            })
-        } else {
-            const updatedProduct = await Products.updateProduct(userProductId, changes, userId)
-            res.json(updatedProduct)
-        }
-      } catch (err) {
-          next(err)
-      }
-  })
 
 module.exports = router;
