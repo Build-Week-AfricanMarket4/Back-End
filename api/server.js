@@ -15,10 +15,6 @@ server.use('/api/auth', authRouter);
 server.use('/api/users', usersRouter);
 server.use('/api/products', productRouter);
 
-server.use('*', (req, res, next) => {
-  next({ status: 404, message: 'not found!' })
-})
-
 server.use((err, req, res, next) => { //eslint-disable-line
   res.status(err.status || 500).json({
     message: err.message,
