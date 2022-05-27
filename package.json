@@ -9,9 +9,9 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "migrateh": "heroku run knex migrate:latest -a build-week-unit-4",
-    "rollbackh": "heroku run knex migrate:rollback -a build-week-unit-4",
-    "databaseh": "heroku pg:psql -a build-week-unit-4",
+    "migrateh": "heroku run knex migrate:latest -a african-market-backend",
+    "rollbackh": "heroku run knex migrate:rollback -a african-market-backend",
+    "databaseh": "heroku pg:psql -a african-market-backend",
     "seedh": "heroku run knex seed:run -a build-week-unit-4",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
     "deploy": "git push heroku main"
